@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libray</title>
+    <script src="script.js" type="application/javascript" defer></script>
+    <link href="reset.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>My little Library</h1>
+    <div id="main">
+
+    </div>
+    <div id="addBook" onclick="showAddBookCard()"></div>
+    <div id="bookInfo" class="invisible">
+        <div class="card">
+            <div class="info">
+                <p class="title">Book :</p>
+                <input type="text" id="title" placeholder="Title of the book"></input>
+            </div>
+            <div class="info">
+                <p class="title">Author :</p>
+                <input type="text" id="author" placeholder="Author of the book"></input>
+            </div>
+            <div class="info">
+                <p class="title">Infos :</p><p></p>
+                <label>Page number :</label><input id="pageNumber" type="number" min="0" placeholder="0" oninput="validity.valid||(value='');"></input>
+                <label>Do you have read this book ?</label><input id="alreadyRead" type="checkbox"></input>
+            </div>
+            <div id="validBook" onclick="createBook()"><span>OK</span></div>
+        </div>
+    </div>
+</body>
+</html>

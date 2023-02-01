@@ -1,0 +1,128 @@
+*{
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size : 12pt;
+}
+body{
+	padding: 20px;
+}
+h1{
+	text-align: center;
+	font-weight: bolder;
+	font-size: 2rem;
+	margin: 2rem;
+}
+div.card{
+	margin: 20px;
+	padding: 10px;
+	width: 250px;
+	border-radius: 10px;
+	display: inline-block;
+	box-shadow: 0 0 100px rgba(0,0,0, .3);
+}
+p.title{
+	display: inline-block;
+	padding: 0 5px 0 5px;
+	margin-left: 10px;
+	background-color: white;
+	border-left: grey solid 1px;
+	position:relative;
+	top: -0.5rem;
+	color: #999;
+}
+p.value{
+	font-size: 1.2rem;
+	padding: 0 10px 10px 10px;
+	border-radius: 5px;
+	display: block;
+	margin-top: -5px;
+	color: #444;
+}
+div.info{
+	border: grey solid 1px;
+	border-radius: 5px;
+	margin: 20px 0;
+}
+
+#addBook {
+	position: absolute;
+	left: 50px;
+	bottom: 50px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: #9F9;
+	box-shadow: 0 0 100px rgba(0,0,0, .3);
+	cursor: pointer;
+	transition: all ease-in-out 1s;
+}
+#addBook:hover {
+	opacity: 0.9;
+	transform: rotate(360deg);
+}
+#addBook:before, #addBook:after {
+	position: absolute;
+	left: 50%;
+	top: 25px;
+	content: ' ';
+	height: 50px;
+	width: 2px;
+	background-color: #333;
+}
+#addBook:before {
+	transform: rotate(90deg);
+}
+#bookInfo{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#bookInfo .card{
+	background-color: rgba(255,255,255,1);
+}
+
+.invisible {
+	visibility: hidden;
+}
+input[type=text]{
+	border: none;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 230px;
+}
+input[type=number]{
+	border: none;
+	border-bottom: grey solid 1px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 50px;
+}
+#bookInfo label{
+	padding: 0 0 10px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	margin:0;
+	margin-top: -5px;
+	color: #444;
+}
+input[type=text]::placeholder{
+	font-style: italic;
+	font-size: 0.8rem;
+}
+#validBook{
+	text-align: right;
+	padding-right: 20px;
+	margin-bottom: 10px;
+}
+#validBook span{
+	background-color: #9F9;
+	border-radius: 50%;
+	padding: 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
