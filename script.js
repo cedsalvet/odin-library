@@ -10,8 +10,10 @@ function Book(name, author, pageCount = 0,  read = false){
 Book.prototype.addBookToLibrary = function(){
     myLibrary.push(this);
 }
+Book.prototype.removeBookFromLibrary = function(){
+    myLibrary = myLibrary.filter(book => book.name != this.name);
 
-
+}
 
 initSomeBooks();
 showAllBooks();
@@ -36,46 +38,17 @@ function getBook(book){
     let card = document.createElement("div");
     card.classList.add("card");
 
-    let bookNameInfo = document.createElement("div");
-    bookNameInfo.classList.add("info");
-    let bookNameTitle = document.createElement("p");
-    bookNameTitle.classList.add("title");
-    let bookNameValue = document.createElement("p");
-    bookNameValue.classList.add("value");
-    bookNameTitle.textContent = `Book :`;
-    bookNameValue.textContent = `${book.name}`;
-    bookNameInfo.appendChild(bookNameTitle);
-    bookNameInfo.appendChild(bookNameValue);
- 
-    let authorInfo = document.createElement("div");
-    authorInfo.classList.add("info");
-    let authorTitle = document.createElement("p");
-    authorTitle.classList.add("title");
-    let authorValue = document.createElement("p");
-    authorValue.classList.add("value");
-    authorTitle.textContent = `Author :`;
-    authorValue.textContent = `${book.author}`;
-    authorInfo.appendChild(authorTitle);
-    authorInfo.appendChild(authorValue);
+    let bookNameInfo = createBookElement('Book', book.name);
+    let authorInfo = createBookElement('Author', book.author);
+    let otherInfo = createBookElement('Infos', `${book.pageCount} pages`, `${book.read ? 'Already read' : 'Not read yet'}`);
+    let buttons = createBookButtons(book)
 
-    let otherInfo = document.createElement("div");
-    otherInfo.classList.add("info");
-    let otherTitle = document.createElement("p");
-    otherTitle.classList.add("title");
-    otherTitle.textContent = `Infos :`;
-    let pageCountValue = document.createElement("p");
-    pageCountValue.classList.add("value");
-    pageCountValue.textContent = `${book.pageCount} pages`;
-    let readValue = document.createElement("p");
-    readValue.classList.add("value");
-    readValue.textContent = `${book.name?'Already read':'Not read yet'}`;
-    otherInfo.appendChild(otherTitle);
-    otherInfo.appendChild(pageCountValue);
-    otherInfo.appendChild(readValue);
+
 
     card.appendChild(bookNameInfo);
     card.appendChild(authorInfo);
     card.appendChild(otherInfo);
+    card.appendChild(buttons);
     return card;
 }
 function showAddBookCard(){
@@ -100,4 +73,47 @@ function createBook(){
     alreadyRead.checked = false;
     
     showAllBooks();
+}
+
+function createBookElement(ElementTitle, ...ElementValue) {
+    let bookInfo = document.createElement("div");
+    bookInfo.classList.add("info");
+    let infoTitle = document.createElement("p");
+    infoTitle.classList.add("title");
+    infoTitle.textContent = `${ElementTitle} :`;
+    bookInfo.appendChild(infoTitle);
+    ElementValue.forEach(element => {
+        let infoValue = document.createElement("p");
+        infoValue.classList.add("value");
+        infoValue.textContent = `${element}`;
+        bookInfo.appendChild(infoValue);
+    });
+    
+    return bookInfo;
+}
+function createBookButtons(book) {
+    let buttonsDiv = document.createElement("div")
+    buttonsDiv.classList.add("cardButtonsHolder");
+    
+    let readChange = document.createElement("div")
+    readChange.classList.add("cardButton");
+    readChange.textContent = `${book.read? 'Not read' : 'Read'}`;
+    readChange.style.cursor = "pointer";
+    readChange.addEventListener('click', function() {
+        book.read = !book.read;
+        showAllBooks();
+    });
+
+    let deleteButton = document.createElement("div")
+    deleteButton.classList.add("cardButton");
+    deleteButton.textContent = "Delete";
+    deleteButton.style.cursor = "pointer";
+    deleteButton.addEventListener("click", function() {
+        book.removeBookFromLibrary() 
+        showAllBooks();
+    ;})
+
+    buttonsDiv.appendChild(readChange);
+    buttonsDiv.appendChild(deleteButton);
+    return buttonsDiv;
 }
